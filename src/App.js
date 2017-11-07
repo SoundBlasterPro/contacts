@@ -9,11 +9,11 @@ import {
 const ContactCard = (props) => {
 	return (
 		<Col xs="3">
-			<Card>
+			<Card block>
 				<CardBlock>
 					<CardTitle>{props.firstName} {props.lastName}</CardTitle>
 				</CardBlock>
-				<CardImg top width='100%' src='http://placecorgi.com/250' alt="Corgis" />
+				<CardImg top width='100%' src='vwsquare.jpg' alt="Corgis" />
 				<CardBlock>
 					<div><strong>Company:</strong> {props.company}</div>
 					<div><strong>Email:</strong> {props.email}</div>
@@ -21,9 +21,14 @@ const ContactCard = (props) => {
 					<div><strong>Web:</strong> {props.website}</div>
 				</CardBlock>
 				<div>
-					<Button color="danger" onClick={() => this.deleteCard.bind(this)} >Delete</Button> <Button color="secondary">Edit</Button>
+					<Button color="secondary">Edit</Button>
+					<Button color="danger" onClick={(event) => this.setState({ isDeleted: true })} >Delete</Button>
+					
 				</div>
 			</Card>
+			<div>
+				<br />
+			</div>
 		</Col>
 	);
 };
@@ -36,7 +41,7 @@ const deleteCard = (event) => {
 const ContactList = (props) => {
 	return (
 		<div>
-			{props.contacts.map(card => <ContactCard {...card} />)}
+			{props.contacts.filter(card => !card.isDeleted).map(card => <ContactCard {...card} />)}
 		</div>
 	);
 }
@@ -104,7 +109,9 @@ class InputForm extends React.Component {
 						placeholder="Website" />
 				</FormGroup>
 				<Button type="submit" color="primary">Add Contact</Button>
-
+				<div>
+					<br />
+				</div>
 			</Form>
 		);
 	}
@@ -118,7 +125,7 @@ class App extends React.Component {
 			company: 'zulily, LLC',
 			email: 'william_reed@live.com',
 			website: 'supernes.deviantart.com',
-			cellNumber: '8675309',
+			cellNumber: '867-5309',
 			isDeleted: false
 		},
 		{
@@ -127,7 +134,7 @@ class App extends React.Component {
 			company: 'Best Company',
 			email: 'address@email.com',
 			website: '',
-			cellNumber: '1234567',
+			cellNumber: '123-4567',
 			isDeleted: true
 		}]
 	};

@@ -7,8 +7,8 @@ const Header = () => {
     <Nav className="navbar navbar-default">
       <NavItem>
         <a className="navbar-brand" href="#">
-          Contacts
-          </a>
+          My Contacts
+        </a>
       </NavItem>
     </Nav>
   );
